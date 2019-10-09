@@ -24,7 +24,6 @@ mongoose.connection.once('open', () => {
   console.log('MongoDB connection established!');
 });
 
-
 const app = express();
 // whatever is in the environment variable PORT, or 5000 if there's nothing there
 const port = process.env.PORT || 5000;
@@ -34,6 +33,13 @@ app.use(cors());
 // Use Built-in middleware
 // Parse incoming requests with JSON payloads
 app.use(express.json());
+
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
+
+// The path for which the middleware function is invoked
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
 
 // Binds and listens for connections on the specified host and port
 app.listen(port, () => {
