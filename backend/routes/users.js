@@ -1,5 +1,8 @@
-const router = require('express').Router();
+// const router = require('express').Router();
+const express = require('express');
 let User = require('../models/user.model');
+
+const router = express.Router();
 
 router.route('/').get((req, res) => {
   // Retreive documents
